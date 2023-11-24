@@ -1,0 +1,70 @@
+CREATE DATABASE prova_maria;
+
+	USE prova_maria;
+
+	CREATE TABLE pessoa(
+	id int(11) PRIMARY KEY NOT NULL auto_increment,
+	nome varchar(4000) NOT NULL
+	);
+
+
+    
+   SELECT COUNT(*) FROM pessoa;
+
+
+SELECT id, nome FROM pessoa WHERE id = 15;
+
+
+
+
+
+
+
+
+SELECT COUNT(*) FROM pessoa WHERE nome = "IGOR BRUNO DE SOUZA SILVA";
+
+
+UPDATE pessoa
+SET NOME = "maria vitoria machado"
+WHERE id = 15; 
+
+UPDATE pessoa
+SET NOME = "maria vitoria machado"
+WHERE id = 150; 
+
+UPDATE pessoa
+SET NOME = "maria vitoria machado"
+WHERE id = 1500; 
+
+
+
+
+SELECT id, nome FROM pessoa WHERE id = 15;
+
+SELECT id, nome FROM pessoa WHERE id = 150;
+
+SELECT id, nome FROM pessoa WHERE id = 1500;
+
+ 
+
+SELECT COUNT(*) FROM pessoa WHERE nome = "maria vitoria machado";
+
+
+CREATE TABLE unidade_requisitante (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  unidade VARCHAR(500) NOT NULL UNIQUE
+);
+
+alter table unidade_requisitante add column fk_pessoa int(11);
+
+alter table unidade_requisitante add constraint id_fk_pessoa
+foreign key(id) references pessoa (id);
+
+select p.id, p.nome, ur.fk_pessoa, ur.id, ur.unidade from pessoa p
+inner join unidade_requisitante ur
+on p.id = ur.fk_pessoa limit 100;
+
+select p.id, p.nome, ur.fk_pessoa, ur.id, ur.unidade from pessoa p
+inner join unidade_requisitante ur
+on p.id = ur.fk_pessoa WHERE p.id in (15, 150, 1500);
+
